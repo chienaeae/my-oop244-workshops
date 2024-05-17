@@ -1,17 +1,27 @@
 /*
+
+Full Name  : Chia-Yu Chien
+Student ID#: 157049222
+Email      : cchien8@myseneca.ca
+
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
 
-From this workshop, I learned how to properly modularize my project. Previously, 
-I used a single file to include all the code, which made organizing and maintaining 
-my project difficult. I often got lost while working on relatively large projects. 
-For example, during the OOP Milestone 3, even though the professor provided three 
-modules, one source file contained over one thousand lines of code. Now, based on 
-what I've just learned, I know I can add modules such as a utility module, a patient 
-module, and an appointment module to organize my code better. In the utility module, 
-I can place functions for sorting and finding. In the patient and appointment 
-modules, I can focus on their specific code separately. Also, I would add namespaces 
-(although not supported in C) in my future projects. From this workshop, I understand 
-how I can categorize my code into different namespaces, which helps eliminate 
-concerns over naming conflicts and visibility issues.
+    In this workshop, I learned how to organize my source code into modules, 
+using header and implementation files. For example, I put one of my module 
+ShoppingList into `ShoppingList.cpp` and `ShoppingList.h`. I separates the 
+declaration and definition into different files. This approach  can do 
+better organization of a codebase and increase the modularity.
+
+    Second, I learned the process of compiling and linking a modular program. 
+The workshop demonstrates how the compiler processes the header file and its 
+definition and finally produce the executable binary file.
+
+    In addition, I leveraged the `namespace` keyword to declare my functions 
+inside the `seneca` namespace. With the help of namespace, we can prevent name 
+conflict in a large project. It adds additional information to let the compiler 
+differentiate functions, classes with the same name. Take the standard library 
+as an example, it declares all the classes, functions in `std` namespace. Hence, 
+when we write a C++ program we can do naming with no concern of name conflict 
+with the naming of the standard library.
 
