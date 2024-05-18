@@ -1,0 +1,76 @@
+/*
+
+Full Name  : Chia-Yu Chien
+Student ID#: 157049222
+Email      : cchien8@myseneca.ca
+
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+In this workshop, I learned how to allocate and deallocate dynamic memory. This is fundamental skill 
+for memory management and crucial while future dealing with complicated data structure in C++. 
+
+This is a snippet code from my part1:
+
+```cpp
+ bool load()
+ {
+    bool ok = false;
+    int i = 0;
+    if (openFile(DATAFILE))
+    {
+       noOfEmployees = noOfRecords();
+
+       employees = new Employee[noOfEmployees];
+       ...
+    }
+    ...
+ }
+```
+
+The code below shows how memory is allocated for the `Emploree` array with the records number.
+
+```cpp
+ void deallocateMemory()
+ {
+    int i = 0;
+    for (i = 0; i < noOfEmployees; i++)
+    {
+       delete employees[i].m_name;
+    }
+    delete employees;
+ }
+```
+
+The code below shows how memory is deallocated. It can ensure no memory leaks occur after deallocation 
+of each `Employee`’s name and `Employee` array itself.
+
+Second, I learned the how to do function overloading. I demonstrated this by implementing three 
+overloading functions with the same name `read` but different parameters.
+
+```cpp
+ bool read(char eName[])
+ {
+    int read = fscanf(fptr, "%[^\n]\n", eName);
+    return read == 1;
+ }
+
+ bool read(int &eNumber)
+ {
+    int read = fscanf(fptr, "%d,", &eNumber);
+    return read == 1;
+ }
+
+ bool read(double &eSalary)
+ {
+    int read = fscanf(fptr, "%lf,", &eSalary);
+    return read == 1;
+ }
+```
+
+The overloading functions of these `read`  increase the flexibility of my code and easier to maintain and 
+reuse.
+
+Last, I gained the skill of using references. I learned how to use references in my code. It is important 
+for manipulating a data from a function through parameters instead of using pointer. Also, it can bring 
+performance improvement into my program.
