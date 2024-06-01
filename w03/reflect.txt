@@ -1,0 +1,32 @@
+In this workshop, I learned to define two classes `Item` and `Bill` 
+and their properties, methods. By implementing this, I learned how 
+to use class to structure data and related functions within classes. 
+Declaration of class helps me to make the code modular and reusable. 
+Within both classes, there are specific private data such as `m_price` 
+in `Item` . This is a approach to encapsulate data. That can ensure
+ the code outside of the class cannot access it to protect the state 
+ of the object of the class, which means to enhance the integrity of
+  the objects of the class.
+
+By declaration of the classes, I also created instances of these 
+classes. A instance maintains its state throughout its lifecycle. 
+For example, the `Bill` Object I initialized in the `main.cpp` file 
+at the beginning. The object has a predefined size and its inner state, 
+and we can manipulate it by using the class’s public method without 
+concern of its state changes. I understood how to blueprint an object 
+and its role in my program, and I learned how to interact with its 
+public methods and encapsulated data. I know these public methods 
+provide a gateway to its inner data. That brings me a relieve to 
+focus on the  business logic.
+
+Besides, I use standard library `iostream` to format my output in 
+many method such as `Item::display` and `Bill::footer` . This library 
+made my output more user-friendly to read. I learned that I can use 
+more standard library built-in functions to implement my features 
+to make effectively.
+
+Overall, the workshop deepened my understanding of OOP. This practice 
+enhances the functionality of my code, and now I learned the importance 
+of encapsulation, declaration of member functions and data. I gained a 
+practical understanding of how to design and implement a software 
+program in a robust and scalable approach.
