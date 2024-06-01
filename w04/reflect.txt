@@ -1,0 +1,54 @@
+First, I defined a default constructor of the `Canister` class to initialize the default values 
+for objects. This ensure that object can have a proper state at creation. Moreover, I implemented 
+multiple overloaded constructor for this class that provides flexibility while constructing its 
+object. Consumers can initialize the object with specific values for height, diameter, and 
+contentName. Not only just constructors yet. I also defined a destructor to ensure the allocated 
+memory can be properly deallocated. This destructor can prevent memory leaks from the content name 
+of `Canister` object. 
+
+As the example from my workshop:
+
+```cpp
+  Canister::~Canister()
+  {
+
+      if (m_contentName != nullptr)
+      {
+          delete[] m_contentName;
+          m_contentName = nullptr;
+      }
+  }
+```
+
+Also, I checked if the resource has been deallocated by checking if `m_contentName` is null.
+
+Dynamic memory allocation is a very crucial skill in C++. Since it gives programmers low-level memory 
+manipulation APIs to design a performance-effective programs, it requires more efforts from programmers 
+to ensure  no memory leaks.
+
+Besides, I implemented member functions that return a reference to the current object itself.
+
+As a example from my workshop:
+
+```cpp
+  Canister &Canister::pour(Canister &C)
+  {
+	    ...
+      return *this;
+  }
+```
+
+This technique allows consumers to implement method chaining to have a graceful way to use `Canister`.  
+
+See a example:
+
+```cpp
+Canister c = Canister("Orange Juice")
+							.setContent("Milk")
+							.pour(500);
+```
+
+In summary, I learned how to use constructor and destructor to create objects, and how to manage dynamic 
+memory through them. I learned to use `this` keyword to get the object pointer itself in method functions. 
+That is helpful for handling object states and implementing method chaining. That is effective for me to 
+write a robust C++ program.
