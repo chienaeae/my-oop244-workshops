@@ -1,0 +1,72 @@
+In this assignment, I learned to define binary member operators. For example, I made the following code to perform an addition of a certain amount of money to the account balance:
+
+```cpp
+Account &Account::operator+=(double money)
+{
+   if (!isValid() || money < 0)
+   {
+   }
+   else
+   {
+      m_balance += money;
+   }
+   return *this;
+}
+```
+
+I also learned to define type conversion operators. It is useful to override the behavior of implicit conversion from an type to another type. For example, I made a conversion operators as the following code to covert an `Account` object to an int, double or even boolean types:
+
+```cpp
+   Account::operator bool() const
+   {
+      return isValid();
+   }
+
+   Account::operator int() const
+   {
+      return m_number;
+   }
+
+   Account::operator double() const
+   {
+      return m_balance;
+   }
+```
+
+Besides that, I also leaned to define and use unary member operators. For example, I used the following code to determine if a `Account` object is new or not set:
+
+```cpp
+bool Account::operator~() const
+{
+   return isNew();
+}
+```
+
+That is very useful skill to override built-in operators to perform user-defined logic. Another similar kill that I learned from this workshop is helper binary operator. I learned to define helper binary operators in my codebase. For example, I override operator `+`  which are friend functions of  class `Account` .
+
+```cpp
+   double operator+(const Account &acc1, const Account &acc2)
+   {
+      if (!acc1.isValid() || !acc2.isValid())
+      {
+         return 0;
+      }
+      return acc1.m_balance + acc2.m_balance;
+   }
+```
+
+I made them to be friend functions is for accessing the private members of `Account`, and it increased the flexibility of using `Account` objects. Helper operator can interact with a primitive types and also class instances. Take the example from my workshop code:
+
+```cpp
+double operator+=(double &money, const Account &acc)
+{
+   if (!acc.isValid())
+   {
+      return 0;
+   }
+   money += acc.m_balance;
+   return money;
+}
+```
+
+With this definition, the operator `+=` can add the balance of an `Account` object to a double value.
