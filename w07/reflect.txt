@@ -1,0 +1,32 @@
+From this workshop, I learned how to create a class derived from a base class. As the the example below:
+
+```cpp
+**class Truck : public MotorVehicle** 
+```
+
+The class `Truck` derives the class `MotorVehicle` . I used the `public` specifier to inherit attributes and methods from the `MotorVehicle` class. This can extend the functionality to my new class and decrease redundancy for writing and maintain many similar class sharing the same concepts. More over, I learned the concept of shadowing, which means the bass class member functions shadowed in the derived class with the same name, for inheritance. For example, both `Truck` and `MotorVehicle` have functions with the same name:
+
+```
+  std::ostream &write(std::ostream &os) const;
+
+  std::istream &read(std::istream &in);
+```
+
+We still can customize the implementation for both classes. Even we still want to access the member functions from the base class, we can use the code as the example demonstrates:
+
+```cpp
+std::istream &Truck::read(std::istream &in) {
+  MotorVehicle::read(in);
+  cout << "Capacity: ";
+  in >> m_capacity;
+  cout << "Cargo: ";
+  in >> m_cargoLoad;
+  return in;
+}
+```
+
+In the read function from the derived class `Truck` , I can access the function from the base class to handle the common attributes before handling the specific attributes of the `Truck` class.  Even there is an inheritance relationship between two classes, the functionalities work correctly.
+
+Also, I implemented custom input and output operators for both classes `Truck` and `MotorVehicle` as the previous workshop has done. By overloading these operators, we can provide a better interface for users of our codebase.
+
+In summary, I learned many important concept about class inheritance how it work in C++. I also gained many practical skills in it, including I/O operators overloading. I understood the importance of designing a code with inheritance relationship between classes and how to avoid write and maintain redundant codes. This workshop helped me the big key concepts of OOP and its real affect on my codebase.
