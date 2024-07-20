@@ -1,0 +1,42 @@
+Throughout this workshop, I learned how to define pure virtual function in C++. Take a example from my workshop: 
+
+```cpp
+class Shape {
+public:
+  virtual void draw(std::ostream &ostr) const = 0;
+
+  virtual void getSpecs(std::istream &istr) = 0;
+
+  virtual ~Shape() = 0;
+};
+```
+
+I defined two pure virtual function `draw` and `getSpecs` . Shape as an abstract base class requires any derived class implement this two methods. Pure virtual function are crucial concept in C++. It plays a interface role in OOP and ensure a consistent interface across derived classes.
+
+Abstract base classes has at least one pure virtual function and it can serve as a blueprint for other derived classes. Abstract base classes cannot be instantiate and its instantiation can only achieve with classes implementing its pure virtual function. For example, I defined Line class and implemented the two pure virtual functions:
+
+```cpp
+void Line::draw(std::ostream &ostr) const {
+  auto label = LblShape::label();
+  if (m_length > 0 && label != nullptr) {
+    ostr << label << "\n";
+    for (int i = 0; i < m_length; i++) {
+      ostr << "=";
+    }
+  }
+}
+
+void Line::getSpecs(std::istream &istr) {
+  LblShape::getSpecs(istr);
+  istr >> m_length;
+  istr.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+```
+
+Given the implementation, we can instantiate Line class. With this implementation, Line object can be seen as a interface for Shape class.
+
+I also learned to use virtual functions in this workshop. Virtual functions is the practice of polymorphism in C++. It allows us to have derived classes to override base class methods. I created virtual functions and overrode them in derived classes, such as Line class I mentioned above. Virtual functions enable dynamic binding at runtime. That is, we can use it to achieve runtime polymorphism and practice more complicated design pattern on top of this concept.
+
+The key difference between an abstract base class and a concrete class is if any pure virtual function exists in a classes. Since a pure virtual function has no implementation, we call it an abstract base class. Abstract base classes are serving for further deriving. A deriving class implements all the pure virtual functions, and we call it a concrete class.
+
+In conclusion, this workshop enhanced my understanding and practice of polymorphism in C++. I learned the importance of pure virtual functions and abstract base classes. Now I can design extensible and reusable code.
