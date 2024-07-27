@@ -1,0 +1,79 @@
+Upon successful completion of this workshop, I learned to apply the “Rule of Three” to ensure 
+that a derived class and a base class can manage dynamic resources properly. The rules indicate 
+that if a class needs a custom destructor it is very likely need to have both custom copy 
+constructor and copy assignment operator as well, because it should handle the deep copy for 
+the dynamic allocated resources.
+
+Here is the code from my workshop implementing “Rule of Three”:
+
+```cpp
+ Text::Text(const Text &other) : m_filename(nullptr), m_content(nullptr) {
+  setFilename(other.m_filename);
+  setContent(other.m_content);
+}
+
+Text::~Text() {
+  if (m_filename != nullptr) {
+    delete[] m_filename;
+    m_filename = nullptr;
+  }
+
+  if (m_content != nullptr) {
+    delete[] m_content;
+    m_content = nullptr;
+  }
+}
+
+Text &Text::operator=(const Text &other) {
+  if (this != &other) {
+    setFilename(other.m_filename);
+    setContent(other.m_content);
+  }
+  return *this;
+}
+```
+
+Since the method fields `m_content` and `m_filename` are pointers and dynamically allocated with 
+a unknown amount of memory in runtime. I have to implement deep copying for these methods when 
+copying occurs. Otherwise, the default shallow copying might lead to bugs in which two instances 
+pointing the same memory.
+
+Besides the three rules, I also learned to use `ifstream` to read a file character by character 
+and dynamically allocate memory to store the content of that file.
+
+Here is the code reading file with `ifstream`:
+
+```cpp
+void Text::read() {
+  if (m_content != nullptr) {
+    delete[] m_content;
+    m_content = nullptr;
+  }
+
+  int length = getFileLength();
+  m_content = new char[length + 1];
+
+  ifstream fin(m_filename);
+  if (fin.is_open()) {
+    int index = 0;
+    char ch;
+    while (fin.get(ch)) {
+      m_content[index] = ch;
+      index++;
+    }
+    m_content[index] = '\0';
+    fin.close();
+  }
+}
+```
+
+I used `ifstream` to open the file with its filename. I checked the file is open or not, and 
+applied a while-loop to digest the file character by character. Once it reaches the end of the 
+file, looping will be terminated. Then I get the complete content of that file.
+
+In conclusion, I learned the advanced skills for resource management. This workshop deepened my 
+knowledge for c++ in the context of dynamic memory management. I learned to correctly implement 
+the “Rule of Three”. And now I can write a more robust code. Moreover, I can design a more 
+complicated classes with complicate deriving relationship. I can implement my custom copy 
+constructor and copy assignment operator in an abstract class and invoke those copy functions 
+from derived classes.
